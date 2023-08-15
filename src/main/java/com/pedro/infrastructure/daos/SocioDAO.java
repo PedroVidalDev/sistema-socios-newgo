@@ -66,6 +66,32 @@ public class SocioDAO {
         return null;
     }
 
+    public JsonObject consultarPorCarteirinha(int carteirinha){
+        String filePath = "src\\main\\java\\com\\pedro\\db\\socios.json";
+        Path path = Paths.get(filePath);
+
+        try(Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)){
+            JsonParser parser = new JsonParser();
+            JsonElement tree = parser.parse(reader);
+            JsonArray array = tree.getAsJsonArray();
+
+            for (JsonElement element : array) {
+
+                if (element.isJsonObject()) {
+                    JsonObject socio = element.getAsJsonObject();
+                    if(socio.get("carteirinha").getAsInt() == carteirinha){
+                        return socio;
+                    }
+                }
+
+            }
+
+        } catch(IOException e){
+            e.printStackTrace();
+        }
+        return null;
+    }
+
     public JsonObject delete(int carteirinha){
         String filePath = "src\\main\\java\\com\\pedro\\db\\socios.json";
         Path path = Paths.get(filePath);

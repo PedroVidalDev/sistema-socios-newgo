@@ -44,7 +44,33 @@ public class SocioService {
         return socio;
     }
 
+    public JsonObject consultarCarteirinha(int carteirinha){
+        JsonObject socio = socioCRUD.consultarPorCarteirinha(carteirinha);
+        return socio;
+    }
+
     public void delete(int carteirinha){
         socioCRUD.delete(carteirinha);
+    }
+
+    public void salvarSocioEditado(int carteirinha, String nome, String doc, String dataAssociacao) throws IOException{
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+        LocalDateTime now = LocalDateTime.now();
+
+        //novo socio
+        JsonObject novoSocio = new JsonObject();
+
+        //lendo arquivo
+        JsonArray arrayNovo = socioCRUD.read();
+
+        //adicionando as informacoes
+        novoSocio.addProperty("carteirinha", (Integer) carteirinha);
+        novoSocio.addProperty("nome", (String) nome);
+        novoSocio.addProperty("documento", (String) doc);
+        novoSocio.addProperty("dataAssociacao", (String) dataAssociacao);
+
+        arrayNovo.add(novoSocio);
+
+        socioCRUD.create(arrayNovo);
     }
 }
