@@ -30,7 +30,7 @@ public class MenuRegistrarSocio {
             System.out.println("Opcao invalida");
         }
 
-        socioSc.validar(nome, doc);
+        socioSc.criar(nome, doc);
 
         System.out.println("Cadastro realizado.");
     }

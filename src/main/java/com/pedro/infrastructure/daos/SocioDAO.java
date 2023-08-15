@@ -11,6 +11,8 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SocioDAO {
+
+    // atualizando o arquivo json dos socios
     public void create(JsonArray listaSocios) throws IOException {
         FileWriter writer = new FileWriter("src\\main\\java\\com\\pedro\\db\\socios.json");
         BufferedWriter wr = new BufferedWriter(writer);
@@ -20,6 +22,7 @@ public class SocioDAO {
         writer.close();
     }
 
+    // lendo o arquivo inteiro
     public JsonArray read() throws IOException{
         String filePath = "src\\main\\java\\com\\pedro\\db\\socios.json";
         Path path = Paths.get(filePath);
@@ -40,6 +43,7 @@ public class SocioDAO {
         }
     }
 
+    // dando find em um objeto especifico
     public JsonObject consultar(String doc){
         String filePath = "src\\main\\java\\com\\pedro\\db\\socios.json";
         Path path = Paths.get(filePath);
@@ -66,6 +70,7 @@ public class SocioDAO {
         return null;
     }
 
+    // dando find em uma carteirinha especifica
     public JsonObject consultarPorCarteirinha(int carteirinha){
         String filePath = "src\\main\\java\\com\\pedro\\db\\socios.json";
         Path path = Paths.get(filePath);
@@ -92,6 +97,7 @@ public class SocioDAO {
         return null;
     }
 
+    // deletando algum socio
     public JsonObject delete(int carteirinha){
         String filePath = "src\\main\\java\\com\\pedro\\db\\socios.json";
         Path path = Paths.get(filePath);

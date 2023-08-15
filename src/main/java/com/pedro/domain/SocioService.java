@@ -18,7 +18,8 @@ public class SocioService {
 
     SocioDAO socioCRUD = new SocioDAO();
 
-    public void validar(String nome, String doc) throws IOException {
+    // validando o socio e dps indo para o metodo de criar
+    public void criar(String nome, String doc) throws IOException {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();
@@ -39,20 +40,25 @@ public class SocioService {
 
         socioCRUD.create(arrayNovo);
     }
+
+    // acao que chama o metodo para ler o arquivo json
     public JsonObject consultar(String doc){
         JsonObject socio = socioCRUD.consultar(doc);
         return socio;
     }
 
+    // mesma coisa q o consultar, porem com numero de carteirinha
     public JsonObject consultarCarteirinha(int carteirinha){
         JsonObject socio = socioCRUD.consultarPorCarteirinha(carteirinha);
         return socio;
     }
 
+    // acao que chama o delete no DAO
     public void delete(int carteirinha){
         socioCRUD.delete(carteirinha);
     }
 
+    // salvando o socio com informacoes alteradas
     public void salvarSocioEditado(int carteirinha, String nome, String doc, String dataAssociacao) throws IOException{
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

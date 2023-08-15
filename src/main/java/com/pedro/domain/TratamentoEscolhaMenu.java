@@ -41,11 +41,13 @@ public class TratamentoEscolhaMenu {
 
             // MENUS RELACIONADOS AOS LOCAIS
             case 5:
-                MenuCriarLocal menuCriar = new MenuCriarLocal();
-                menuCriar.menuCria();
+                MenuCriarLocal menuCriarLocal = new MenuCriarLocal();
+                menuCriarLocal.menuCria();
                 break;
             case 6:
-
+                MenuCriarAgenda menuCriarAgenda = new MenuCriarAgenda();
+                menuCriarAgenda.menuCria();
+                break;
             default:
                 System.out.println("Opcao invalida");
                 return;
