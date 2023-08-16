@@ -48,6 +48,10 @@ public class TratamentoEscolhaMenu {
                 MenuCriarAgenda menuCriarAgenda = new MenuCriarAgenda();
                 menuCriarAgenda.menuCria();
                 break;
+            case 7:
+                MenuRelatorioLocais menuRelatorioLocais = new MenuRelatorioLocais();
+                menuRelatorioLocais.menuRelatorio();
+                break;
             default:
                 System.out.println("Opcao invalida");
                 return;
