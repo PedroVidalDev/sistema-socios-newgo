@@ -52,6 +52,10 @@ public class TratamentoEscolhaMenu {
                 MenuRelatorioLocais menuRelatorioLocais = new MenuRelatorioLocais();
                 menuRelatorioLocais.menuRelatorio();
                 break;
+            case 8:
+                MenuRelatorioLocaisPorSocio menuRelatorioLocalSocio = new MenuRelatorioLocaisPorSocio();
+                menuRelatorioLocalSocio.menuRelatorioSocio();
+                break;
             default:
                 System.out.println("Opcao invalida");
                 return;

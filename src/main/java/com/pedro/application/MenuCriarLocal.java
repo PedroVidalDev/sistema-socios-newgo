@@ -15,10 +15,10 @@ public class MenuCriarLocal {
         int qntPessoas;
 
         System.out.print("Digite o nome do novo espaco: ");
-        nomeLocal = sc.next();
+        nomeLocal = sc.nextLine();
 
         System.out.print("Escreva a categoria do espaco (esporte, recreacao ou relaxamento): ");
-        categoriaLocal = sc.next();
+        categoriaLocal = sc.nextLine();
 
         System.out.print("Qual a quantidade maxima de pessoas no local: ");
         qntPessoas = sc.nextInt();

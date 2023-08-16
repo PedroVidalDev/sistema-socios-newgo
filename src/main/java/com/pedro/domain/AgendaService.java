@@ -22,7 +22,7 @@ public class AgendaService {
         JsonArray arrayNovo = agendaCRUD.read();
 
         //adicionando as informacoes
-        novaAgenda.addProperty("localID", (Integer) id);
+        novaAgenda.addProperty("LocalID", (Integer) id);
         novaAgenda.addProperty("SocioID", (Integer) carteirinha);
         novaAgenda.addProperty("data", (String) data);
         novaAgenda.addProperty("tempo", (String) (horaInicio + "h ate as " + horaFim + "h"));
@@ -30,5 +30,9 @@ public class AgendaService {
         arrayNovo.add(novaAgenda);
 
         agendaCRUD.create(arrayNovo);
+    }
+
+    public JsonArray consultar(int carteirinha) throws IOException{
+        return agendaCRUD.filtrarCarteirinha(carteirinha);
     }
 }
