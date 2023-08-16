@@ -43,4 +43,28 @@ public class LocalDAO {
             return arrayNovo;
         }
     }
+
+    public JsonArray delete(int id){
+        String filePath = "src\\main\\java\\com\\pedro\\db\\locais.json";
+        Path path = Paths.get(filePath);
+
+        try (Reader reader = Files.newBufferedReader(path, StandardCharsets.UTF_8)) {
+            JsonParser parser = new JsonParser();
+            JsonElement tree = parser.parse(reader);
+            JsonArray array = tree.getAsJsonArray();
+            JsonArray arrayNovo = new JsonArray();
+
+            for (JsonElement element : array) {
+                if (element.isJsonObject()) {
+                    JsonObject local = element.getAsJsonObject();
+                    if(local.get("id").getAsInt() != id){
+                        arrayNovo.add(local);
+                    }
+                }
+            }
+            return arrayNovo;
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
 }

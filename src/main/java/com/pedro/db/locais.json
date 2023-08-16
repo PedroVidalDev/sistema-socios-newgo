@@ -1,1 +1,1 @@
-[{"id":0,"nome":"Piscina","qntHoras":0,"datas":[],"qntPessoas":20,"categoria":"Recreacao"},{"id":1,"nome":"Campo","qntHoras":0,"datas":[],"qntPessoas":22,"categoria":"Esporte"}]
+[{"id":1,"nome":"Campo","qntHoras":7,"datas":["10/10/2025"],"qntPessoas":22,"categoria":"Esporte"},{"id":0,"nome":"Piscina","qntHoras":10,"datas":["10/02/2025"],"qntPessoas":20,"categoria":"Recreacao"}]

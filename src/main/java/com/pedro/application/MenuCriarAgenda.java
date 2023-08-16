@@ -26,7 +26,7 @@ public class MenuCriarAgenda {
 
         // FAZER VALIDACAO AQ
 
-        JsonArray listaLocais = agendaSc.listaLocais();
+        JsonArray listaLocais = localSc.listaLocais();
 
         for(JsonElement element : listaLocais){
             JsonObject local = element.getAsJsonObject();
@@ -51,10 +51,13 @@ public class MenuCriarAgenda {
         horaFim = sc.nextInt();
 
         System.out.println("Local: " + local.get("nome").getAsString());
-        System.out.println("Por " + (horaFim - horaInicio));
+        System.out.println("Por " + (horaFim - horaInicio) + " horas.");
+
         System.out.println("No dia: " + data);
 
-        // adicionar a qnt de horas e a data no json dos locais
-        // criar agendamento com o socio no json das agendas
+        localSc.update(local, carteirinha, horaInicio, horaFim, qntPessoas, data);
+        agendaSc.criar(local.get("id").getAsInt(), carteirinha, horaInicio, horaFim, data);
+
+        System.out.println("Agendamento realizado com sucesso.");
     }
 }

@@ -18,7 +18,7 @@ public class SocioService {
 
     SocioDAO socioCRUD = new SocioDAO();
 
-    // validando o socio e dps indo para o metodo de criar
+    // organizado as infos o socio e dps indo para o metodo de criar
     public void criar(String nome, String doc) throws IOException {
 
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");

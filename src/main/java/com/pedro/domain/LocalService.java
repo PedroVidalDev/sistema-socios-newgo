@@ -40,6 +40,11 @@ public class LocalService {
         localCRUD.create(arrayNovo);
     }
 
+    public JsonArray listaLocais() throws IOException {
+        LocalDAO localCRUD = new LocalDAO();
+        return localCRUD.read();
+    }
+
     public JsonObject selecionarLocal(int id){
         String filePath = "src\\main\\java\\com\\pedro\\db\\locais.json";
         Path path = Paths.get(filePath);
@@ -64,5 +69,23 @@ public class LocalService {
             e.printStackTrace();
         }
         return null;
+    }
+
+    public void update(JsonObject local, int carteirinha, int horaInicio, int horaFim, int qntPessoas, String data) throws IOException{
+        JsonObject localAtualizado = new JsonObject();
+        JsonArray listaDatas = local.get("datas").getAsJsonArray();
+        listaDatas.add(data);
+
+        localAtualizado.addProperty("id", local.get("id").getAsInt());
+        localAtualizado.addProperty("nome", local.get("nome").getAsString());
+        localAtualizado.addProperty("qntHoras", local.get("qntHoras").getAsInt() + (horaFim - horaInicio));
+        localAtualizado.add("datas", listaDatas);
+        localAtualizado.addProperty("qntPessoas", local.get("qntPessoas").getAsInt());
+        localAtualizado.addProperty("categoria", local.get("categoria").getAsString());
+
+        JsonArray listaLocais = localCRUD.delete(local.get("id").getAsInt());
+        listaLocais.add(localAtualizado);
+
+        localCRUD.create(listaLocais);
     }
 }
