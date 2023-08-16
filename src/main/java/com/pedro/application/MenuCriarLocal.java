@@ -14,16 +14,20 @@ public class MenuCriarLocal {
         String nomeLocal, categoriaLocal;
         int qntPessoas;
 
-        System.out.print("Digite o nome do novo espaco: ");
-        nomeLocal = sc.nextLine();
+        try {
+            System.out.print("Digite o nome do novo espaco: ");
+            nomeLocal = sc.nextLine();
 
-        System.out.print("Escreva a categoria do espaco (esporte, recreacao ou relaxamento): ");
-        categoriaLocal = sc.nextLine();
+            System.out.print("Escreva a categoria do espaco (esporte, recreacao ou relaxamento): ");
+            categoriaLocal = sc.nextLine();
 
-        System.out.print("Qual a quantidade maxima de pessoas no local: ");
-        qntPessoas = sc.nextInt();
+            System.out.print("Qual a quantidade maxima de pessoas no local: ");
+            qntPessoas = sc.nextInt();
 
-        localSc.criar(nomeLocal, qntPessoas, categoriaLocal);
+            localSc.criar(nomeLocal, qntPessoas, categoriaLocal);
 
-        System.out.println("Local cadastrado com sucesso!");
+            System.out.println("Local cadastrado com sucesso!");
+        } catch(Error e){
+            System.out.println("Valor inserido esta invalido..");
+        }
     }}

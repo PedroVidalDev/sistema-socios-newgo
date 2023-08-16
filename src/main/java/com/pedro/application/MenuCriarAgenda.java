@@ -21,9 +21,13 @@ public class MenuCriarAgenda {
         int carteirinha, escolhaLocal, horaInicio, horaFim, qntPessoas;
         String data;
 
-        System.out.print("Digite o numero de carteirinha do socio: ");
-        carteirinha = sc.nextInt();
-
+        try {
+            System.out.print("Digite o numero de carteirinha do socio: ");
+            carteirinha = sc.nextInt();
+        } catch(Error e){
+            System.out.println("Valor invalido");
+            return;
+        }
         // FAZER VALIDACAO AQ
 
         JsonArray listaLocais = localSc.listaLocais();
@@ -33,31 +37,35 @@ public class MenuCriarAgenda {
             System.out.println((local.get("id")) + ") " + (local.get("nome")));
         }
 
-        System.out.print("Selecione um local com base no seu numero: ");
-        escolhaLocal = sc.nextInt();
+        try {
+            System.out.print("Selecione um local com base no seu numero: ");
+            escolhaLocal = sc.nextInt();
 
-        JsonObject local = localSc.selecionarLocal(escolhaLocal);
+            JsonObject local = localSc.selecionarLocal(escolhaLocal);
 
-        System.out.print("Digite a data que ira utilizar (d/m/a): ");
-        data = sc.next();
+            System.out.print("Digite a data que ira utilizar (d/m/a): ");
+            data = sc.next();
 
-        System.out.print("Digite a qnt. de pessoas que irao utilizar: ");
-        qntPessoas = sc.nextInt();
+            System.out.print("Digite a qnt. de pessoas que irao utilizar: ");
+            qntPessoas = sc.nextInt();
 
-        System.out.print("Digite a hora de inicio: ");
-        horaInicio = sc.nextInt();
+            System.out.print("Digite a hora de inicio: ");
+            horaInicio = sc.nextInt();
 
-        System.out.print("Digite a hora do fim: ");
-        horaFim = sc.nextInt();
+            System.out.print("Digite a hora do fim: ");
+            horaFim = sc.nextInt();
 
-        System.out.println("Local: " + local.get("nome").getAsString());
-        System.out.println("Por " + (horaFim - horaInicio) + " horas.");
+            System.out.println("Local: " + local.get("nome").getAsString());
+            System.out.println("Por " + (horaFim - horaInicio) + " horas.");
 
-        System.out.println("No dia: " + data);
+            System.out.println("No dia: " + data);
 
-        localSc.update(local, carteirinha, horaInicio, horaFim, qntPessoas, data);
-        agendaSc.criar(local.get("id").getAsInt(), carteirinha, horaInicio, horaFim, data);
+            localSc.update(local, carteirinha, horaInicio, horaFim, qntPessoas, data);
+            agendaSc.criar(local.get("id").getAsInt(), carteirinha, horaInicio, horaFim, data);
 
-        System.out.println("Agendamento realizado com sucesso.");
+            System.out.println("Agendamento realizado com sucesso.");
+        } catch(Error e){
+            System.out.println("Valor inserido esta invalido");
+        }
     }
 }

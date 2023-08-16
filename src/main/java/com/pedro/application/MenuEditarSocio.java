@@ -13,21 +13,25 @@ public class MenuEditarSocio {
         int carteirinha;
         String nome, doc;
 
-        System.out.print("Digite o numero da carteirinha do socio: ");
-        carteirinha = sc.nextInt();
+        try {
+            System.out.print("Digite o numero da carteirinha do socio: ");
+            carteirinha = sc.nextInt();
 
-        JsonObject socio = socioSc.consultarCarteirinha(carteirinha);
+            JsonObject socio = socioSc.consultarCarteirinha(carteirinha);
 
-        System.out.print("Digite o novo nome do socio (antes " + socio.get("nome") + "): ");
-        nome = sc.next();
+            System.out.print("Digite o novo nome do socio (antes " + socio.get("nome") + "): ");
+            nome = sc.next();
 
-        System.out.print("Digite o novo documento do socio (antes " + socio.get("documento") + "): ");
-        doc = sc.next();
+            System.out.print("Digite o novo documento do socio (antes " + socio.get("documento") + "): ");
+            doc = sc.next();
 
-        socioSc.delete(carteirinha);
+            socioSc.delete(carteirinha);
 
-        socioSc.salvarSocioEditado(carteirinha, nome, doc, socio.get("dataAssociacao").getAsString());
+            socioSc.salvarSocioEditado(carteirinha, nome, doc, socio.get("dataAssociacao").getAsString());
 
-        System.out.println("Socio editado com sucesso!");
+            System.out.println("Socio editado com sucesso!");
+        } catch(Error e){
+            System.out.println("Algum valor inserido esta invalido");
+        }
     }
 }

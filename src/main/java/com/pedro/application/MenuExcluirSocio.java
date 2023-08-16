@@ -11,11 +11,15 @@ public class MenuExcluirSocio {
     public void menuExclui(){
         int carteirinha;
 
-        System.out.print("Digite o numero da carteirinha do socio: ");
-        carteirinha = sc.nextInt();
+        try {
+            System.out.print("Digite o numero da carteirinha do socio: ");
+            carteirinha = sc.nextInt();
 
-        socioSc.delete(carteirinha);
+            socioSc.delete(carteirinha);
 
-        System.out.println("Socio excluido com sucesso!");
+            System.out.println("Socio excluido com sucesso!");
+        } catch(Error e){
+            System.out.println("Algum valor inserido esta errado ou socio nao existe");
+        }
     }
 }
