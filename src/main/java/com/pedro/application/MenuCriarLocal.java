@@ -23,7 +23,7 @@ public class MenuCriarLocal {
         System.out.print("Qual a quantidade maxima de pessoas no local: ");
         qntPessoas = sc.nextInt();
 
-        localSc.validar(nomeLocal, qntPessoas, categoriaLocal);
+        localSc.criar(nomeLocal, qntPessoas, categoriaLocal);
 
         System.out.println("Local cadastrado com sucesso!");
     }}
