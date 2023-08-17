@@ -1,1 +1,1 @@
-[{"id":0,"nome":"Quadra Futebol","qntHoras":0,"datas":[],"qntPessoas":22,"categoria":"Esporte"},{"id":1,"nome":"Volei","qntHoras":6,"datas":["10/12"],"qntPessoas":12,"categoria":"Esporte"}]
+[{"id":0,"nome":"Quadra Futebol","qntHoras":6,"datas":["10/02/2019"],"qntPessoas":22,"categoria":"Esporte"},{"id":1,"nome":"Volei","qntHoras":15,"datas":["10/12","10/02"],"qntPessoas":12,"categoria":"Esporte"}]

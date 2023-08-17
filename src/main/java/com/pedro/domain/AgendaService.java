@@ -35,4 +35,11 @@ public class AgendaService {
     public JsonArray consultar(int carteirinha) throws IOException{
         return agendaCRUD.filtrarCarteirinha(carteirinha);
     }
+
+    public boolean validar(JsonObject local, int horaInicio, int horaFim, int qntPessoas){
+        if((horaFim - horaInicio) < 1 || local.get("qntPessoas").getAsInt() < qntPessoas){
+            return false;
+        }
+        return true;
+    }
 }

@@ -22,6 +22,7 @@ public class MenuCriarAgenda {
     public void menuCria() throws IOException {
         int carteirinha, escolhaLocal, horaInicio, horaFim, qntPessoas;
         String data;
+        boolean verificar;
 
         try {
             System.out.print("Digite o numero de carteirinha do socio: ");
@@ -62,15 +63,21 @@ public class MenuCriarAgenda {
                     System.out.print("Digite a hora do fim: ");
                     horaFim = sc.nextInt();
 
-                    System.out.println("Local: " + local.get("nome").getAsString());
-                    System.out.println("Por " + (horaFim - horaInicio) + " horas.");
+                    verificar = agendaSc.validar(local, horaInicio, horaFim, qntPessoas);
 
-                    System.out.println("No dia: " + data);
+                    if(verificar == true) {
+                        System.out.println("Local: " + local.get("nome").getAsString());
+                        System.out.println("Por " + (horaFim - horaInicio) + " horas.");
 
-                    localSc.update(local, carteirinha, horaInicio, horaFim, qntPessoas, data);
-                    agendaSc.criar(local.get("id").getAsInt(), carteirinha, horaInicio, horaFim, data);
+                        System.out.println("No dia: " + data);
 
-                    System.out.println("Agendamento realizado com sucesso.");
+                        localSc.update(local, carteirinha, horaInicio, horaFim, qntPessoas, data);
+                        agendaSc.criar(local.get("id").getAsInt(), carteirinha, horaInicio, horaFim, data);
+
+                        System.out.println("Agendamento realizado com sucesso.");
+                    } else{
+                        System.out.println("Informacao indevida foi colocada..");
+                    }
                 } else{
                     System.out.println("Local nao encontrado..");
                 }

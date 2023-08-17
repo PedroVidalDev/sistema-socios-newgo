@@ -37,6 +37,7 @@ public class MenuRelatorioLocaisPorSocio {
                     System.out.println("Local: " + local.get("nome").getAsString());
                     System.out.println("Tempo: " + reserva.get("tempo").getAsString());
                     System.out.println("Data: " + reserva.get("data").getAsString());
+                    System.out.println("=-=-=-=-=-=-=-=-=-=-=-=-=");
                 }
             } else{
                 System.out.println("Socio nao encontrado..");
