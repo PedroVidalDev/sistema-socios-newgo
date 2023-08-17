@@ -79,4 +79,18 @@ public class SocioService {
 
         socioCRUD.create(arrayNovo);
     }
+
+    public boolean validarCPF(String cpf){
+        if(cpf.length() != 11){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean validarRG(String rg){
+        if(rg.length() != 9){
+            return false;
+        }
+        return true;
+    }
 }

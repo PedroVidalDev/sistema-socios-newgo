@@ -7,6 +7,8 @@ import java.util.Scanner;
 public class MenuRegistrarSocio {
 
     String nome, doc;
+    int escDoc;
+    boolean validaDoc;
 
     Scanner sc = new Scanner(System.in);
     SocioService socioSc = new SocioService();
@@ -16,20 +18,27 @@ public class MenuRegistrarSocio {
             nome = sc.next();
 
             System.out.print("Gostaria de cadastrar CPF (1) ou RG (2)? ");
+            escDoc = sc.nextInt();
 
-            if (sc.nextInt() == 1) {
+            if (escDoc == 1) {
                 System.out.print("Ok, digite seu CPF: ");
                 doc = sc.next();
-            } else if (sc.nextInt() == 2) {
+                validaDoc = socioSc.validarCPF(doc);
+            } else if (escDoc == 2) {
                 System.out.print("Ok, digite seu RG: ");
                 doc = sc.next();
+                validaDoc = socioSc.validarRG(doc);
             } else {
                 System.out.println("Opcao invalida");
             }
 
-            socioSc.criar(nome, doc);
+            if(validaDoc == true) {
+                socioSc.criar(nome, doc);
 
-            System.out.println("Cadastro realizado.");
+                System.out.println("Cadastro realizado.");
+            } else{
+                System.out.println("Documento invalido.");
+            }
         } catch(Error e){
             System.out.println("Algum valor inserido esta incorreto");
         }
