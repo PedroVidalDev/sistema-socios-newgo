@@ -5,6 +5,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.pedro.domain.AgendaService;
 import com.pedro.domain.LocalService;
+import com.pedro.domain.SocioService;
 import com.pedro.infrastructure.daos.AgendaDAO;
 import com.pedro.infrastructure.daos.LocalDAO;
 
@@ -13,6 +14,7 @@ import java.util.Scanner;
 
 public class MenuCriarAgenda {
 
+    SocioService socioSc = new SocioService();
     AgendaService agendaSc = new AgendaService();
     LocalService localSc = new LocalService();
 
@@ -28,44 +30,55 @@ public class MenuCriarAgenda {
             System.out.println("Valor invalido");
             return;
         }
-        // FAZER VALIDACAO AQ
 
-        JsonArray listaLocais = localSc.listaLocais();
+        JsonObject socio = socioSc.consultarCarteirinha(carteirinha);
 
-        for(JsonElement element : listaLocais){
-            JsonObject local = element.getAsJsonObject();
-            System.out.println((local.get("id")) + ") " + (local.get("nome")));
-        }
+        if(socio != null) {
 
-        try {
-            System.out.print("Selecione um local com base no seu numero: ");
-            escolhaLocal = sc.nextInt();
+            JsonArray listaLocais = localSc.listaLocais();
 
-            JsonObject local = localSc.selecionarLocal(escolhaLocal);
+            for (JsonElement element : listaLocais) {
+                JsonObject local = element.getAsJsonObject();
+                System.out.println((local.get("id")) + ") " + (local.get("nome")));
+            }
 
-            System.out.print("Digite a data que ira utilizar (d/m/a): ");
-            data = sc.next();
+            try {
+                System.out.print("Selecione um local com base no seu numero: ");
+                escolhaLocal = sc.nextInt();
 
-            System.out.print("Digite a qnt. de pessoas que irao utilizar: ");
-            qntPessoas = sc.nextInt();
+                JsonObject local = localSc.selecionarLocal(escolhaLocal);
 
-            System.out.print("Digite a hora de inicio: ");
-            horaInicio = sc.nextInt();
+                if(local != null) {
 
-            System.out.print("Digite a hora do fim: ");
-            horaFim = sc.nextInt();
+                    System.out.print("Digite a data que ira utilizar (d/m/a): ");
+                    data = sc.next();
 
-            System.out.println("Local: " + local.get("nome").getAsString());
-            System.out.println("Por " + (horaFim - horaInicio) + " horas.");
+                    System.out.print("Digite a qnt. de pessoas que irao utilizar: ");
+                    qntPessoas = sc.nextInt();
 
-            System.out.println("No dia: " + data);
+                    System.out.print("Digite a hora de inicio: ");
+                    horaInicio = sc.nextInt();
 
-            localSc.update(local, carteirinha, horaInicio, horaFim, qntPessoas, data);
-            agendaSc.criar(local.get("id").getAsInt(), carteirinha, horaInicio, horaFim, data);
+                    System.out.print("Digite a hora do fim: ");
+                    horaFim = sc.nextInt();
 
-            System.out.println("Agendamento realizado com sucesso.");
-        } catch(Error e){
-            System.out.println("Valor inserido esta invalido");
+                    System.out.println("Local: " + local.get("nome").getAsString());
+                    System.out.println("Por " + (horaFim - horaInicio) + " horas.");
+
+                    System.out.println("No dia: " + data);
+
+                    localSc.update(local, carteirinha, horaInicio, horaFim, qntPessoas, data);
+                    agendaSc.criar(local.get("id").getAsInt(), carteirinha, horaInicio, horaFim, data);
+
+                    System.out.println("Agendamento realizado com sucesso.");
+                } else{
+                    System.out.println("Local nao encontrado..");
+                }
+            } catch (Error e) {
+                System.out.println("Valor inserido esta invalido");
+            }
+        } else{
+            System.out.println("Socio nao encontrado..");
         }
     }
 }

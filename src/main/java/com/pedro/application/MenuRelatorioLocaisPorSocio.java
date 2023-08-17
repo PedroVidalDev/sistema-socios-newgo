@@ -24,21 +24,26 @@ public class MenuRelatorioLocaisPorSocio {
         try {
             System.out.print("Digite o numero de carteira do socio: ");
             carteirinha = sc.nextInt();
-
-            JsonArray reservas = agendaSc.consultar(carteirinha);
             JsonObject socio = socioSc.consultarCarteirinha(carteirinha);
 
-            System.out.println("O socio " + socio.get("nome").getAsString() + " possui o seguinte historico: ");
+            if(socio != null) {
+                JsonArray reservas = agendaSc.consultar(carteirinha);
 
-            for (JsonElement element : reservas) {
-                JsonObject reserva = element.getAsJsonObject();
-                JsonObject local = localSc.selecionarLocal(reserva.get("LocalID").getAsInt());
-                System.out.println("Local: " + local.get("nome").getAsString());
-                System.out.println("Tempo: " + reserva.get("tempo").getAsString());
-                System.out.println("Data: " + reserva.get("data").getAsString());
+                System.out.println("O socio " + socio.get("nome").getAsString() + " possui o seguinte historico: ");
+
+                for (JsonElement element : reservas) {
+                    JsonObject reserva = element.getAsJsonObject();
+                    JsonObject local = localSc.selecionarLocal(reserva.get("LocalID").getAsInt());
+                    System.out.println("Local: " + local.get("nome").getAsString());
+                    System.out.println("Tempo: " + reserva.get("tempo").getAsString());
+                    System.out.println("Data: " + reserva.get("data").getAsString());
+                }
+            } else{
+                System.out.println("Socio nao encontrado..");
             }
         } catch(Error e){
             System.out.println("Erro na insercao do numero de carteira..");
         }
+
     }
 }
